@@ -34,11 +34,11 @@ function Users() {
         setSearchQuery(event.target.value);
     }
 
-    const filterUsers = users.filter(user =>
+    const filterUsers = Array.isArray(users) ? users.filter(user =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.id.toString().toLowerCase().includes(searchQuery.toLowerCase()) ||
         user.email.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    ) : [];
 
     return (
         <div className="container">
@@ -59,7 +59,7 @@ function Users() {
                             </tr>
                         </thead>
                         <tbody>
-                            {
+                            {users.length > 0 ? (
                                 filterUsers.map((user, i) => {
                                     return (
                                         <tr key={i}>
@@ -70,11 +70,15 @@ function Users() {
                                             <td>
                                                 <Link to={`/read/${user.id}`} className="btn btn-success mx-2">Read</Link>
                                                 <Link to={`/update/${user.id}`} className="btn btn-warning mx-2">Edit</Link>
-                                                <button onClick={() => handleDelete(user.id)} >Delete</button>
+                                                <button onClick={() => handleDelete(user.id)} className="btn btn-danger mx-2">Delete</button>
                                             </td>
                                         </tr>
                                     )
-                                })
+                                })) : (
+                                    <tr>
+                                        <td colSpan="5">Not found users data</td>
+                                    </tr>
+                                )
                             }
                         </tbody>
                     </table>

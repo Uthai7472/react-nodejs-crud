@@ -9,6 +9,8 @@ const Add = () => {
         password: "",
     });
 
+    const [resMsg, setResMsg] = useState('None');
+
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -21,9 +23,16 @@ const Add = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:3000/api/create", users);
-            console.log("success");
-            navigate("/");
+            const res = await axios.post("http://localhost:3000/api/create", users);
+            console.log("Response from server:" + res.data);
+            // alert(res.data);
+            setResMsg(res.data);
+            setTimeout(() => {
+                setResMsg('None');
+                navigate("/");
+            }, 2000);
+
+            
 
         } catch (err) {
             console.log(err);
@@ -53,6 +62,7 @@ const Add = () => {
                     <button type='submit' className='btn btn-primary' onClick={handleClick}>Add user</button>
                     <Link to='/'>See all users</Link>
                 </form>
+                { resMsg && <div>Response: {resMsg}</div> }
             </div>
         </div>
     </div>
