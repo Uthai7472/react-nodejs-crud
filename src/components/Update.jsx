@@ -22,13 +22,13 @@ const Update = () => {
 
     const handleClick = async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:3000/api/users/${id}`, user);
+        await axios.put(`https://nodejs-api-user.onrender.com/api/users/${id}`, user);
         console.log("ID :", id);
         navigate("/");
     }
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/userdetail/" + id)
+        axios.get("https://nodejs-api-user.onrender.com/api/userdetail/" + id)
         .then(res => {
             console.log(res.data[0]);
             setUser(res.data[0]);

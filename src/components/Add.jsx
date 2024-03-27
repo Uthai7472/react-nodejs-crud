@@ -23,7 +23,7 @@ const Add = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3000/api/create", users);
+            const res = await axios.post("https://nodejs-api-user.onrender.com/api/create", users);
             console.log("Response from server:" + res.data);
             // alert(res.data);
             setResMsg(res.data);

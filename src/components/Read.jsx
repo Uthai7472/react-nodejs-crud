@@ -9,7 +9,7 @@ const Read = () => {
     const [user, setUsers] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/userdetail/" + id)
+        axios.get("https://nodejs-api-user.onrender.com/api/userdetail/" + id)
         .then(res => {
             
             setUsers(res.data[0]);

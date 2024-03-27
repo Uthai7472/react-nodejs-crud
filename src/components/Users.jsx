@@ -8,7 +8,7 @@ function Users() {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete("http://localhost:3000/api/users/" + id);
+            await axios.delete("https://nodejs-api-user.onrender.com/api/users/" + id);
             console.log("delete completed");
             window.location.reload();
         } catch(err) {
@@ -19,7 +19,7 @@ function Users() {
     useEffect(() => {
         const fetchAllUsers = async () => {
             try {
-                const res = await axios.get("http://localhost:3000/api/users");
+                const res = await axios.get("https://nodejs-api-user.onrender.com/api/users");
                 console.log(res);
                 setUsers(res.data);
 
